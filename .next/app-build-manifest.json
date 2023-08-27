@@ -1,0 +1,30 @@
+{
+  "pages": {
+    "/(protected)/[storeId]/(routes)/billboards/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(protected)/[storeId]/(routes)/billboards/page.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/(protected)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(protected)/layout.js"
+    ],
+    "/(protected)/[storeId]/(routes)/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(protected)/[storeId]/(routes)/page.js"
+    ],
+    "/(protected)/[storeId]/(routes)/billboards/[billboardId]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(protected)/[storeId]/(routes)/billboards/[billboardId]/page.js"
+    ]
+  }
+}
