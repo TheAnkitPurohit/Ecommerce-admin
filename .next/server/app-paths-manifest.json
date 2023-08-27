@@ -1,5 +1,0 @@
-{
-  "/(protected)/[storeId]/(routes)/page": "app/(protected)/[storeId]/(routes)/page.js",
-  "/(protected)/[storeId]/(routes)/billboards/page": "app/(protected)/[storeId]/(routes)/billboards/page.js",
-  "/(protected)/[storeId]/(routes)/billboards/[billboardId]/page": "app/(protected)/[storeId]/(routes)/billboards/[billboardId]/page.js"
-}
