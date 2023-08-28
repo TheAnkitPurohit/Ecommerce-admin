@@ -1,12 +1,26 @@
 "use client";
 
 import * as React from "react";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { type ThemeProviderProps } from "next-themes/dist/types";
+import { ThemeOptions, ThemeProvider, createTheme } from "@mui/material/styles";
 
-export default function ThemeProvider({
+export const themeOptions: ThemeOptions = {
+  palette: {
+    mode: "light",
+    primary: {
+      main: "#3f51b5",
+    },
+    secondary: {
+      main: "#f50057",
+    },
+  },
+};
+
+const theme = createTheme(themeOptions);
+
+export default function MUIThemeProvider({
   children,
-  ...props
-}: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+}: {
+  children: React.ReactNode;
+}) {
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }

@@ -41,7 +41,7 @@ const StoreBillboardsPage = async ({
 
       <Divider color="white" />
 
-      <Box sx={{ background: "white" }}>
+      <Box>
         <BillBoardTable data={billboards} />
       </Box>
     </Container>
