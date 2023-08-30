@@ -42,6 +42,27 @@ const MainNav = () => {
       label: "Billboards",
       active: pathname === `/${params.storeId}/billboards`,
     },
+
+    {
+      herf: `/${params.storeId}/categories`,
+      label: "Categories",
+      active: pathname === `/${params.storeId}/categories`,
+    },
+    {
+      herf: `/${params.storeId}/colors`,
+      label: "Colors",
+      active: pathname === `/${params.storeId}/colors`,
+    },
+    {
+      herf: `/${params.storeId}/sizes`,
+      label: "Sizes",
+      active: pathname === `/${params.storeId}/sizes`,
+    },
+    {
+      herf: `/${params.storeId}/products`,
+      label: "Products",
+      active: pathname === `/${params.storeId}/products`,
+    },
     {
       herf: `/${params.storeId}/settings`,
       label: "Settings",
@@ -113,7 +134,11 @@ const MainNav = () => {
           <Link key={route?.herf} href={route?.herf}>
             <Button
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{
+                my: 2,
+                color: route?.active ? "wheat" : "white",
+                display: "block",
+              }}
               className="lg"
             >
               {route?.label}

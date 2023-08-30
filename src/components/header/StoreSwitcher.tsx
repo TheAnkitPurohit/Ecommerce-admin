@@ -6,6 +6,12 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { Store } from "@prisma/client";
 import { useParams } from "next/navigation";
 import useStoreHook from "@/hooks/useStoreHook";
+import { Box, FormControl, FormHelperText, InputLabel } from "@mui/material";
+import MainButton, {
+  ButtonSizeType,
+  ButtonType,
+  ButtonVariantType,
+} from "../button/MainButton";
 
 interface Options {
   label: string;
@@ -31,18 +37,29 @@ const StoreSwitcher = ({ items }: Props) => {
   const [value, setValue] = React.useState<Options>();
 
   return (
-    <Autocomplete
-      value={value}
-      onChange={(event: any, newValue: any) => {
-        setValue(newValue);
-      }}
-      disablePortal
-      id="combo-box-demo"
-      options={formattedItems}
-      size="small"
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Select Store" />}
-    />
+    <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+      <Autocomplete
+        value={value}
+        onChange={(event: any, newValue: any) => {
+          setValue(newValue);
+        }}
+        disablePortal
+        id="combo-box-demo"
+        options={formattedItems}
+        size="small"
+        sx={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="Select Store" />}
+      />
+
+      <Box>
+        <MainButton
+          size={ButtonSizeType.Medium}
+          variant={ButtonVariantType.Contained}
+          text="Update"
+          type={ButtonType.Submit}
+        />
+      </Box>
+    </Box>
   );
 };
 

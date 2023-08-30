@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Box, Modal, Stack, TextField, Typography } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 
 // form
 import { Controller, useForm } from "react-hook-form";
@@ -65,7 +65,7 @@ const UpdateStore = () => {
 
       <Box {...form} my={2}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Stack spacing={2}>
+          <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
             <Controller
               control={form.control}
               name="name"
@@ -75,15 +75,15 @@ const UpdateStore = () => {
                 formState,
               }) => (
                 <TextField
-                  helperText={error ? error.message : null}
+                  {...params}
+                  label="Name"
                   size="small"
                   error={!!error}
                   onChange={onChange}
                   value={value}
-                  fullWidth
-                  label={"Name"}
-                  variant="outlined"
                   disabled={isLoading}
+                  sx={{ width: 300 }}
+                  required
                 />
               )}
             />
@@ -97,7 +97,7 @@ const UpdateStore = () => {
                 isDisabled={isLoading}
               />
             </Box>
-          </Stack>
+          </Box>
         </form>
       </Box>
     </Box>

@@ -10,8 +10,8 @@ interface Props {
 
 const ChangeStore = ({ stores }: Props) => {
   return (
-    <Box sx={{ display: "flex", gap: 4 }}>
-      <Typography variant="h5" sx={{ fontWeight: 500 }}>
+    <Box>
+      <Typography variant="h5" sx={{ fontWeight: 500, mb: 2 }}>
         Change Store
       </Typography>
 

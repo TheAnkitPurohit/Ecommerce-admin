@@ -1,11 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { format } from "date-fns";
 
 import { Billboard } from "@prisma/client";
 import { useParams, useRouter } from "next/navigation";
+import DataTableComponent from "@/components/table/DataTableComponent";
 
 const columns: GridColDef[] = [
   { field: "label", headerName: "Label", width: 200 },
@@ -33,19 +34,11 @@ const BillBoardTable = ({ data }: BillBoardTableProps) => {
   };
 
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={data}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        onRowClick={handleRowClick}
-      />
-    </div>
+    <DataTableComponent
+      data={data}
+      columns={columns}
+      handleRowClick={handleRowClick}
+    />
   );
 };
 

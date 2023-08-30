@@ -4,7 +4,7 @@ import { CldUploadWidget } from "next-cloudinary";
 import { useEffect, useState } from "react";
 
 import Image from "next/image";
-import { Box, Button } from "@mui/material";
+import { Box, Button, IconButton, Paper } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -37,7 +37,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 
   return (
     <Box>
-      <Box sx={{ mb: 4, display: "flex", alignItems: "center", gap: 4 }}>
+      <Box sx={{ my: 1, display: "flex", alignItems: "center", gap: 4 }}>
         {value.map((url) => (
           <Box
             sx={{
@@ -49,21 +49,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
             }}
             key={url}
           >
-            <Box
-              sx={{
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                top: 0,
-                right: 2,
-                backgroundColor: "rgba(0,0,0,0.5)",
-                zIndex: 10,
-              }}
-            >
-              <Button onClick={() => onRemove(url)}>
-                <DeleteIcon />
-              </Button>
-            </Box>
             <Image
               fill
               style={{
@@ -82,8 +67,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           };
 
           return (
-            <Button type="button" disabled={disabled} onClick={onClick}>
-              <AddIcon />
+            <Button
+              variant="outlined"
+              type="button"
+              endIcon={<AddIcon />}
+              disabled={disabled}
+              onClick={onClick}
+            >
               Upload an Image
             </Button>
           );

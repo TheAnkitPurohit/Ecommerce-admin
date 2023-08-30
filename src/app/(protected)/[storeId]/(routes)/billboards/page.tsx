@@ -1,11 +1,9 @@
 import { Box, Container, Divider, Stack } from "@mui/material";
 
-import { auth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
 
 import MainHeading from "@/components/headings/MainHeading";
-import NewBillboard from "./NewBillboard";
+import NewBillboard from "./components/NewBillboard";
 import BillBoardTable from "./components/BillBoardTable";
 
 const StoreBillboardsPage = async ({
@@ -23,7 +21,7 @@ const StoreBillboardsPage = async ({
   });
 
   return (
-    <Container maxWidth="xl">
+    <>
       <Stack
         spacing={2}
         sx={{ pb: 2 }}
@@ -44,7 +42,7 @@ const StoreBillboardsPage = async ({
       <Box>
         <BillBoardTable data={billboards} />
       </Box>
-    </Container>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import Navbar from "@/components/header/Navbar";
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({
@@ -32,7 +32,9 @@ export default async function DashboardLayout({
     <>
       <Navbar store={store} />
 
-      <Box mt={4}>{children}</Box>
+      <Box mt={4}>
+        <Container maxWidth="xl">{children}</Container>{" "}
+      </Box>
     </>
   );
 }

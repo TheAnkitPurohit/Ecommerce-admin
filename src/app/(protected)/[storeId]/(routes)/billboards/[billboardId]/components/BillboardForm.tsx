@@ -22,10 +22,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
 import axios, { AxiosResponse, isAxiosError } from "axios";
-
 import toast from "react-hot-toast";
-
-import useStoreHook from "@/hooks/useStoreHook";
 
 // button
 import MainButton, {
@@ -40,8 +37,8 @@ import MainHeading from "@/components/headings/MainHeading";
 import ImageUpload from "@/components/upload-image/ImageUpload";
 
 const formSchema = z.object({
-  label: z.string().min(1),
-  imageUrl: z.string().min(1),
+  label: z.string().min(1, "Please enter a label."),
+  imageUrl: z.string().min(1, "Please upload an image."),
 });
 
 type BillboardFormValues = z.infer<typeof formSchema>;
@@ -117,84 +114,80 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
 
   return (
     <>
-      <Container maxWidth="xl">
-        <Stack
-          spacing={2}
-          sx={{ pb: 2 }}
-          direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-        >
-          <MainHeading title={title} subtitle={description} />
+      <Stack
+        spacing={2}
+        sx={{ pb: 2 }}
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <MainHeading title={title} subtitle={description} />
 
-          {initialData && (
-            <Button variant="outlined" onClick={() => setOpen(true)}>
-              <DeleteIcon />
-            </Button>
-          )}
-        </Stack>
+        {initialData && (
+          <Button variant="outlined" onClick={() => setOpen(true)}>
+            <DeleteIcon />
+          </Button>
+        )}
+      </Stack>
 
-        <Divider color="white" />
+      <Divider color="white" />
 
-        <Box {...form} my={2} bgcolor={"white"} p={2}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <Stack spacing={2}>
-              <Controller
-                control={form.control}
-                name="imageUrl"
-                render={({ field }) => (
-                  <Box>
-                    <FormLabel>Background image</FormLabel>
-                    <FormControl>
-                      <ImageUpload
-                        value={field.value ? [field.value] : []}
-                        disabled={isLoading}
-                        onChange={(url) => field.onChange(url)}
-                        onRemove={() => field.onChange("")}
-                      />
-                    </FormControl>
-                    <FormHelperText />
-                  </Box>
-                )}
-              />
-
-              <Controller
-                control={form.control}
-                name="label"
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                  formState,
-                }) => (
-                  <TextField
-                    helperText={error ? error.message : null}
-                    size="small"
-                    error={!!error}
-                    onChange={onChange}
-                    value={value}
-                    fullWidth
-                    label={"Label"}
-                    variant="outlined"
+      <Box {...form} my={2} bgcolor={"white"} p={2}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <Stack spacing={2}>
+            <Controller
+              control={form.control}
+              name="imageUrl"
+              render={({ field, fieldState: { error } }) => (
+                <FormControl error={!!error}>
+                  <FormLabel>Background image</FormLabel>
+                  <ImageUpload
+                    value={field.value ? [field.value] : []}
                     disabled={isLoading}
-                    placeholder="Billboard label"
-                    color="info"
+                    onChange={(url) => field.onChange(url)}
+                    onRemove={() => field.onChange("")}
                   />
-                )}
-              />
+                  <FormHelperText />
+                </FormControl>
+              )}
+            />
 
-              <Box>
-                <MainButton
-                  size={ButtonSizeType.Medium}
-                  variant={ButtonVariantType.Contained}
-                  text={action}
-                  type={ButtonType.Submit}
-                  isDisabled={isLoading}
+            <Controller
+              control={form.control}
+              name="label"
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+                formState,
+              }) => (
+                <TextField
+                  helperText={error ? error.message : null}
+                  size="small"
+                  error={!!error}
+                  onChange={onChange}
+                  value={value}
+                  fullWidth
+                  label={"Label"}
+                  variant="outlined"
+                  disabled={isLoading}
+                  placeholder="Billboard label"
+                  color="info"
                 />
-              </Box>
-            </Stack>
-          </form>
-        </Box>
-      </Container>
+              )}
+            />
+
+            <Box>
+              <MainButton
+                size={ButtonSizeType.Medium}
+                variant={ButtonVariantType.Contained}
+                text={action}
+                type={ButtonType.Submit}
+                isDisabled={isLoading}
+              />
+            </Box>
+          </Stack>
+        </form>
+      </Box>
     </>
   );
 };
