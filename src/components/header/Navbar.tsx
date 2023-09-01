@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { UserButton, auth } from "@clerk/nextjs";
-import { redirect, useParams } from "next/navigation";
+import { redirect } from "next/navigation";
 
 import { Box, Typography, AppBar, Toolbar, Container } from "@mui/material";
 import AdbIcon from "@mui/icons-material/Adb";
